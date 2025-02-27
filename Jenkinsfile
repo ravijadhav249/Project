@@ -4,7 +4,7 @@ pipeline {
         stage('Clone Repository'){
             steps {
                 git branch: 'master',
-                url: 'https://github.com/ravijadhav249/docker-app.git/'
+                url: 'https://github.com/ravijadhav249/Project.git/'
             }
         }
         stage('Build with Maven'){
@@ -23,7 +23,7 @@ pipeline {
         stage('Push docker image'){
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
                     sh 'docker tag todo-application-image:latest ravijadhav249/todo-application:latest'
                     sh 'docker push ravijadhav249/todo-application:latest'
                 }
