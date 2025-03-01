@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: todo-application
-          image: ravijadhav249/todo-application-image:latest # Replace with your Docker hub repository name and tag
+          image: ravijadhav249/todo-application:latest # Replace with your Docker hub repository name and tag
           ports:
             - containerPort: 8081
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://mysql-db-service:3306/tododb
+              value: jdbc:mysql://mysql-db:3306/tododb
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
